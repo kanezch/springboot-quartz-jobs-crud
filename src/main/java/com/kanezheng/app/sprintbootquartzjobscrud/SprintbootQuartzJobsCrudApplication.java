@@ -14,7 +14,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 @SpringBootApplication
 public class SprintbootQuartzJobsCrudApplication {
 
-	Logger logger = LoggerFactory.getLogger(SprintbootQuartzJobsCrudApplication.class);
+//	Logger logger = LoggerFactory.getLogger(SprintbootQuartzJobsCrudApplication.class);
 /*	@Bean
 	public SchedulerFactoryBean schedulerFactory() {
 		SchedulerFactoryBean factoryBean = new SchedulerFactoryBean();
@@ -23,18 +23,18 @@ public class SprintbootQuartzJobsCrudApplication {
 	}*/
 
 
-	@Bean
-	public Scheduler scheduler(StdSchedulerFactory sf) throws SchedulerException {
-		Scheduler scheduler = sf.getScheduler();
-		scheduler.start();
-		logger.info("scheduler started!");
-		return scheduler;
-	}
-
-	@Bean
-	public StdSchedulerFactory schedulerFactory(){
-		return new StdSchedulerFactory();
-	}
+//	@Bean
+//	public Scheduler scheduler(StdSchedulerFactory sf) throws SchedulerException {
+//		Scheduler scheduler = sf.getScheduler();
+//		scheduler.start();
+//		logger.info("scheduler started!");
+//		return scheduler;
+//	}
+//
+//	@Bean
+//	public StdSchedulerFactory schedulerFactory(){
+//		return new StdSchedulerFactory();
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SprintbootQuartzJobsCrudApplication.class, args);

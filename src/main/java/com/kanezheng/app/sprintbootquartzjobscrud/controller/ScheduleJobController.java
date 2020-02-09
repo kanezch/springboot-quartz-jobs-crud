@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class ScheduleJobController {
 
     @Autowired
-    private final ScheduleJobService scheduleJobService;
+    private ScheduleJobService scheduleJobService;
 
     public ScheduleJobController(ScheduleJobService scheduleJobService) {
         this.scheduleJobService = scheduleJobService;
