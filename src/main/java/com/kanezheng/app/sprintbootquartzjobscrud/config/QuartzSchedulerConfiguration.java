@@ -19,34 +19,24 @@ public class QuartzSchedulerConfiguration {
     @Autowired
     ApplicationContext applicationContext;
 
-/*    @Bean
-    public SchedulerFactoryBean scheduler() {
-
-        SchedulerFactoryBean quartzScheduler = new SchedulerFactoryBean();
-
-//        quartzScheduler.setConfigLocation(new ClassPathResource("quartz.properties"));
-
-
-        AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
-        jobFactory.setApplicationContext(applicationContext);
-        quartzScheduler.setJobFactory(jobFactory);
-
-        return quartzScheduler;
-    }*/
     @Bean
-    public Scheduler quartzScheduler() throws SchedulerException {
+    public SchedulerFactoryBean schedulerFactory(DataSource dataSource) {
 
         SchedulerFactoryBean schedulerFactory = new SchedulerFactoryBean();
-
+        schedulerFactory.setSchedulerName("scheduler_kane");
         schedulerFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
+        schedulerFactory.setDataSource(dataSource);
 
         AutowiringSpringBeanJobFactory jobFactory = new AutowiringSpringBeanJobFactory();
         jobFactory.setApplicationContext(applicationContext);
         schedulerFactory.setJobFactory(jobFactory);
 
-        Scheduler scheduler = schedulerFactory.getScheduler();
-        scheduler.start();
+        return schedulerFactory;
+    }
 
+    @Bean
+    public Scheduler scheduler(SchedulerFactoryBean schedulerFactory){
+        Scheduler scheduler = schedulerFactory.getScheduler();
         System.out.println("#######scheduler start!!!@###$$$");
         return scheduler;
     }

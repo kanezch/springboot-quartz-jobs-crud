@@ -15,10 +15,6 @@ public class HelloWorldJob implements Job {
     @Autowired
     private JobRepository jobRepository;
 
-    public HelloWorldJob(JobRepository jobRepository) {
-        this.jobRepository = jobRepository;
-    }
-
     @Override
     public void execute(JobExecutionContext context) {
 

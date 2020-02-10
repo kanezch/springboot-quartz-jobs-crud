@@ -9,7 +9,7 @@ CREATE TABLE portal.job
 );
 
 
-create schema quartz;
+CREATE SCHEMA IF NOT EXISTS quartz;
 
 CREATE TABLE quartz.qrtz_job_details
   (

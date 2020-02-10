@@ -18,10 +18,24 @@ public class ScheduleJobController {
         this.scheduleJobService = scheduleJobService;
     }
 
-    @GetMapping(path = "/newjob/{number}")
+    @GetMapping(path = "/job/{number}")
     public ResponseEntity createJob(@PathVariable String number) throws SchedulerException {
 
         scheduleJobService.createJob(number);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/job/{jobId}")
+    public ResponseEntity deleteJob(@PathVariable Long jobId) throws SchedulerException {
+
+        scheduleJobService.deleteJob(jobId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/job/{jobId}")
+    public ResponseEntity updateJob(@PathVariable Long jobId) throws SchedulerException {
+
+        scheduleJobService.updateJob(jobId);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

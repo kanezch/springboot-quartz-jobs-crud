@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
+import static org.quartz.TriggerKey.triggerKey;
 
 @Service
 public class ScheduleJobService {
@@ -24,7 +25,10 @@ public class ScheduleJobService {
     @Autowired
     private Scheduler scheduler;
 
-    public int createJob(String jobNumber) {
+    @Autowired
+    JobRepository jobRepository;
+
+    public int createJob(String jobNumber) throws SchedulerException {
 
         String jobName = "job"+jobNumber;
         String triggerName = "trigger"+jobNumber;
@@ -38,7 +42,7 @@ public class ScheduleJobService {
                 .withIdentity(triggerName, "group1")
                 .startNow()
                 .withSchedule(simpleSchedule()
-                        .withIntervalInSeconds(5)
+                        .withIntervalInSeconds(60)
                         .repeatForever())
                 .build();
 
@@ -51,14 +55,31 @@ public class ScheduleJobService {
             e.printStackTrace();
         }
 
-        try {
-            scheduler.scheduleJob(job, trigger);
-        } catch (SchedulerException e) {
-            e.printStackTrace();
-            System.out.println("Exception when shedule job");
-        }
+        scheduler.scheduleJob(job, trigger);
+        System.out.println("####### Exception when schedule job #######");
 
         System.out.println("scheduler.scheduleJob:" + jobName);
         return 0;
+    }
+
+    public void deleteJob(Long jobId) throws SchedulerException {
+        String jobName = "job"+jobId;
+        scheduler.deleteJob(JobKey.jobKey(jobName, "group1"));
+        System.out.println("Delete job by jobId "+ jobId);
+    }
+
+    public void updateJob(Long jobId) throws SchedulerException {
+
+        String triggerName = "trigger" + jobId;
+
+        Trigger trigger = newTrigger()
+                .withIdentity("newTrigger", "group1")
+                .startNow()
+                .withSchedule(simpleSchedule().withIntervalInSeconds(30).repeatForever())
+                .build();
+
+        scheduler.rescheduleJob(triggerKey(triggerName, "group1"), trigger);
+
+        System.out.println("Reschedule job");;
     }
 }
