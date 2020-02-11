@@ -20,4 +20,6 @@ public class JobEntity {
     private Long id;
 
     private String name;
+
+    private int status; // 0: waiting or 1 = success
 }

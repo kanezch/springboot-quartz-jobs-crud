@@ -5,7 +5,8 @@ CREATE SCHEMA IF NOT EXISTS portal;
 CREATE TABLE portal.job
 (
     id bigserial NOT NULL PRIMARY KEY,
-    name text NOT NULL
+    name text NOT NULL,
+    status int NOT NULL
 );
 
 

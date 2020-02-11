@@ -25,9 +25,13 @@ public class HelloWorldJob implements Job {
         try {
             System.out.println("Hello this is : "+ jobName + " running in scheduler: "+ scheduler.getSchedulerName());
 
-            JobEntity jobEntity = JobEntity.builder().name(jobName).build();
-            JobEntity jobEntityResp = jobRepository.save(jobEntity);
-            logger.info("Save jobEntity to database: {} ", jobEntityResp);
+//            JobEntity jobEntity = JobEntity.builder().name(jobName).status(0).build();
+//            JobEntity jobEntityResp = jobRepository.save(jobEntity);
+//            logger.info("Save jobEntity to database: {} ", jobEntityResp);
+
+            JobEntity nextWaitingJob = jobRepository.findNextWaitingJob(0);
+            logger.info("####jobQuery from database: {} ", nextWaitingJob);
+
         } catch (SchedulerException e) {
             e.printStackTrace();
         }
