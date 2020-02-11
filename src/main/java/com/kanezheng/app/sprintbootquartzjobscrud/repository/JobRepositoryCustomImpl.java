@@ -2,7 +2,6 @@ package com.kanezheng.app.sprintbootquartzjobscrud.repository;
 
 
 import com.kanezheng.app.sprintbootquartzjobscrud.dao.JobEntity;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -10,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
 

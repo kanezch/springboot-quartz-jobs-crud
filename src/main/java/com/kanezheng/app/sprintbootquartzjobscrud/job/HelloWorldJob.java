@@ -2,7 +2,6 @@ package com.kanezheng.app.sprintbootquartzjobscrud.job;
 
 import com.kanezheng.app.sprintbootquartzjobscrud.dao.JobEntity;
 import com.kanezheng.app.sprintbootquartzjobscrud.repository.JobRepository;
-import com.kanezheng.app.sprintbootquartzjobscrud.service.ScheduleJobService;
 import org.quartz.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

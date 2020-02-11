@@ -1,14 +1,9 @@
 package com.kanezheng.app.sprintbootquartzjobscrud.service;
 
-import com.kanezheng.app.sprintbootquartzjobscrud.dao.JobEntity;
 import com.kanezheng.app.sprintbootquartzjobscrud.job.HelloWorldJob;
 import com.kanezheng.app.sprintbootquartzjobscrud.repository.JobRepository;
 import org.quartz.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import static org.quartz.JobBuilder.newJob;
